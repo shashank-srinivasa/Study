@@ -62,3 +62,13 @@ def test_cli_ok():
 def test_cli_missing_file_fails():
     r = subprocess.run([sys.executable, str(CLI), str(FIX / "nope.md")])
     assert r.returncode == 1
+
+
+def test_knowledge_check_required():
+    errs = validate(parse_sessions(load("no_kc.md")))
+    assert any("Knowledge check" in e for e in errs)
+
+
+def test_knowledge_check_needs_three_questions():
+    errs = validate(parse_sessions(load("short_kc.md")))
+    assert any("Knowledge check" in e and "3" in e for e in errs)

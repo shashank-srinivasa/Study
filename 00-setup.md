@@ -24,6 +24,10 @@ wheels for Python 3.11–3.15.)
    `python -c "import torch; x = torch.ones(3, device='mps'); print((x * 2).cpu())"`
 **Done when:** step 5 prints `3.13.x`, a torch version (2.15 or newer), and `True`. Step 6 prints `tensor([2., 2., 2.])`.
 **Sticking points:** If step 5 prints `False` for MPS, run `python -c "import platform; print(platform.machine())"`. It must print `arm64`. If it prints `x86_64`, you're running an Intel (Rosetta) Python: delete `.venv` and recreate it from a native terminal. If `uv` isn't found in a new terminal, open a fresh shell. Never `pip install` into the system Python 3.14.
+**Knowledge check:**
+- Why does this guide use its own virtual environment instead of your system Python?
+- What command do you run in each new terminal before working on the guide?
+- What does `torch.backends.mps.is_available()` tell you, and what is "MPS"? (Hint: the PyTorch install page and the [MPS backend notes](https://docs.pytorch.org/docs/stable/notes/mps.html).)
 
 ### Session 0.2 — Notebooks, tensors, and a Colab account (~1.5 h)
 - [ ] Done
@@ -37,3 +41,8 @@ wheels for Python 3.11–3.15.)
 **Done when:** your notebook runs the tutorial top to bottom without errors; the matmul cell prints `torch.Size([1000, 1000])` and `mps:0`; and in Colab `!nvidia-smi` shows a Tesla T4.
 **Sticking points:** Colab's free GPUs aren't guaranteed. If no GPU is available, try again later. Phase 5 also lists paid alternatives, so you won't be blocked.
 **Go deeper:** If you've never used Jupyter, spend 15 minutes on keyboard shortcuts (Shift+Enter runs a cell, `Esc` then `B` adds a cell below).
+**Knowledge check:**
+- What is a tensor, and how is it different from a Python list?
+- How do you move a tensor from the CPU to your Mac's GPU, and back?
+- What does `@` do between two tensors, and what has to be true about their shapes?
+- Why will you need Colab later, when your Mac already has a GPU?

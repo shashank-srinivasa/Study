@@ -91,6 +91,15 @@ they defined as: **made of things other people at their level have tried and fou
   - "You're done when…" checkpoint (observable, self-checkable)
   - Known sticking points and how to get past them (only well-known ones)
   - Optional "go deeper" pointer
+  - **Knowledge check** (Odin Project style, added at the learner's request): 3–5 short
+    questions the learner should be able to answer, each answerable from the session's
+    resource.
+- **Modeled on The Odin Project** (the learner's reference): ordered small lessons that point
+  to proven external resources, knowledge checks, and **a standalone project at the end of
+  every phase** that the learner does without following a video (for example micrograd on a
+  dataset the lecture didn't use, or a GPT trained on their own data with their own changes).
+- **Community:** the README points to active communities for the core resources (for example
+  the Zero to Hero Discord and the GPU MODE Discord), verified live.
 - **Math starting point:** the learner hasn't done math in about 10 years. Assume high-school
   algebra is rusty and calculus is mostly forgotten. Start from zero and give gentle refreshers
   on functions, slopes, exponents/logs and summation notation before 3Blue1Brown.

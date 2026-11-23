@@ -11,8 +11,9 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 HEADING = re.compile(r"^### Session (\d+\.\d+) — (.+?) \(~?([\d.]+) h\)\s*$")
-FIELD = re.compile(r"^\*\*(Goal|Resource|Do|Done when|Sticking points|Go deeper):\*\*\s*(.*)$")
-REQUIRED = ("Goal", "Resource", "Do", "Done when")
+FIELD = re.compile(r"^\*\*(Goal|Resource|Do|Done when|Sticking points|Go deeper|Knowledge check):\*\*\s*(.*)$")
+REQUIRED = ("Goal", "Resource", "Do", "Done when", "Knowledge check")
+MIN_KC = 3
 MIN_H, MAX_H = 1.0, 2.5
 MD_LINK = re.compile(r"\]\((https?://[^)\s]+)\)")
 BARE = re.compile(r"(?<![(\[])\bhttps?://[^\s)\]>`\"']+")
@@ -27,28 +28,34 @@ class Session:
     line: int
     fields: dict[str, str] = field(default_factory=dict)
     has_checkbox: bool = False
+    kc_count: int = 0
 
 
 def parse_sessions(text: str) -> list[Session]:
     sessions: list[Session] = []
     cur: Session | None = None
+    in_kc = False
     for n, raw in enumerate(text.splitlines(), 1):
         m = HEADING.match(raw)
         if m:
             title = m.group(2)
             cur = Session(m.group(1), title, float(m.group(3)), "(optional)" in title, n)
             sessions.append(cur)
+            in_kc = False
             continue
         if raw.startswith("#"):
             cur = None
             continue
         if cur is None:
             continue
+        if in_kc and re.match(r"^\s*(-|\d+\.)\s+\S", raw):
+            cur.kc_count += 1
         if raw.strip().startswith("- [ ]") or raw.strip().startswith("- [x]"):
             cur.has_checkbox = True
         f = FIELD.match(raw)
         if f:
             cur.fields[f.group(1)] = f.group(2)
+            in_kc = f.group(1) == "Knowledge check"
     return sessions
 
 
@@ -65,6 +72,8 @@ def validate(sessions: list[Session]) -> list[str]:
                 errs.append(f"{where}: missing field '{req}'")
         if not (MIN_H <= s.hours <= MAX_H):
             errs.append(f"{where}: hours {s.hours} outside {MIN_H}-{MAX_H}")
+        if "Knowledge check" in s.fields and s.kc_count < MIN_KC:
+            errs.append(f"{where}: Knowledge check has {s.kc_count} questions, needs at least {MIN_KC}")
         if not s.has_checkbox:
             errs.append(f"{where}: missing '- [ ] Done' checkbox")
     return errs

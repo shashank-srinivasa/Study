@@ -7,6 +7,10 @@
 **Do:**
 1. Watch it
 **Done when:** you can explain it
+**Knowledge check:**
+- q1?
+- q2?
+- q3?
 
 ### Session 1.2 — Second thing (~1.5 h)
 - [ ] Done
@@ -15,3 +19,7 @@
 **Do:**
 1. Type it
 **Done when:** it runs
+**Knowledge check:**
+- q1?
+- q2?
+- q3?

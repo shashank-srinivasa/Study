@@ -11,7 +11,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 HEADING = re.compile(r"^### Session (\d+\.\d+) — (.+?) \(~?([\d.]+) h\)\s*$")
-FIELD = re.compile(r"^\*\*(Goal|Resource|Do|Done when|Sticking points|Go deeper|Knowledge check):\*\*\s*(.*)$")
+FIELD = re.compile(r"^\*\*(Goal|Before this|Resource|Do|Done when|Sticking points|Go deeper|Knowledge check):\*\*\s*(.*)$")
 REQUIRED = ("Goal", "Resource", "Do", "Done when", "Knowledge check")
 MIN_KC = 3
 MIN_H, MAX_H = 1.0, 2.5

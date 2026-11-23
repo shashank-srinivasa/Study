@@ -1,4 +1,4 @@
-# Phase 1 — Math foundations (~25 h)
+# Phase 1 — Math foundations (~26.5 h)
 
 **Who this is for:** you haven't done math in about 10 years. That's fine. This phase starts from
 "what is a function" and ends with you understanding, visually and intuitively, the math a
@@ -8,19 +8,39 @@ neural network uses. It isn't a math degree. It's exactly enough to make Phases 
 in a notebook (paper is best). If you can't, rewatch the confusing part. This habit matters
 more than speed.
 
+**Meaning first:** every session starts with a **Before this** block linking to [concept cards](01-concepts.md). Each card says *what* an idea is, *why* it exists, and *where it shows up in AI*, with a one-minute self-test. Don't skip them. Knowing a procedure without knowing its purpose is exactly the gap this phase closes. Start with Session 1.0.
+
 **Your one rule for this phase:** don't skip the pen-and-paper parts. You'll do one of the
 guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 
 ---
 
+### Session 1.0 — Foundations check: arithmetic and algebra (~1 h)
+- [ ] Done
+**Goal:** find any gaps in the basics *before* they make later topics feel hard, and understand what each basic idea is for.
+**Resource:** concept cards [C1 Negative numbers](01-concepts.md#c1--negative-numbers), [C2 Fractions, decimals, and division](01-concepts.md#c2--fractions-decimals-and-division), [C3 Order of operations](01-concepts.md#c3--order-of-operations), [C4 Variables and expressions](01-concepts.md#c4--variables-and-expressions), [C5 Equations and solving](01-concepts.md#c5--equations-and-solving); [Khan Academy — Pre-algebra](https://www.khanacademy.org/math/pre-algebra) for anything shaky.
+**Do:**
+1. For each of C1–C5, read "What it is" and "Why it exists", then do the self-test on paper **before** looking at the answer.
+2. Mark each card ✅ (got it right and could explain why) or ❌.
+3. For every ❌, use the card's "If shaky" search term on Khan Academy: watch the video and do practice until you get 5 in a row right.
+4. Read C6 (function). It's the single most important idea in this phase, and Session 1.1 builds on it.
+**Done when:** all five self-tests are ✅, and you can say in one sentence each what an expression is, what an equation is, and how they differ.
+**Sticking points:** Being rusty here is completely normal after 10 years. Fixing a ❌ usually takes 15–30 minutes, not days.
+**Knowledge check:**
+- What is the difference between `2x + 1` and `2x + 1 = 7`?
+- What does "solving" an equation actually find?
+- Why do we need an agreed order of operations?
+
 ### Session 1.1 — Refresher: functions and graphs (~1.5 h)
 - [ ] Done
 **Goal:** remember what a function is, and how to read its graph.
+**Before this:** [C4 Variables and expressions](01-concepts.md#c4--variables-and-expressions), [C5 Equations and solving](01-concepts.md#c5--equations-and-solving), [C6 Function](01-concepts.md#c6--function). Read each card and do its self-test. If one is shaky, fix it first. Then read C7 and C9 *after* this session's videos.
 **Resource:** [Khan Academy — Algebra 1](https://www.khanacademy.org/math/algebra). Use the site search for **"functions"** and **"graphing quadratic functions"** and do the intro videos plus a few practice questions.
 **Do:**
 1. Watch the intro to functions and do 5–10 practice questions until they feel easy.
 2. On paper, sketch `f(x) = x²`, `f(x) = 2x + 1`, and `f(x) = 3x² − 4x + 5` by plugging in x = −2…3.
-3. In a notebook (`~/ai-learning/01-math.ipynb`), plot the same three with matplotlib: `xs = np.linspace(-2, 3, 100); plt.plot(xs, 3*xs**2 - 4*xs + 5)`.
+3. Read [C9](01-concepts.md#c9--quadratic-functions-lowest-point-vs-solving): what a quadratic is, and the difference between *where it equals 0* and *where it is lowest*.
+4. In a notebook (`~/ai-learning/01-math.ipynb`), plot the same three with matplotlib: `xs = np.linspace(-2, 3, 100); plt.plot(xs, 3*xs**2 - 4*xs + 5)`.
 **Done when:** your hand sketch and your matplotlib plot of `3x² − 4x + 5` have the same shape, with the lowest point near x ≈ 0.67.
 **Sticking points:** If the plotting code feels like the hard part, it isn't the point. Copy the pattern and change the formula.
 **Knowledge check:**
@@ -31,6 +51,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 ### Session 1.2 — Refresher: exponents, logs, and Σ notation (~2 h)
 - [ ] Done
 **Goal:** be comfortable with `eˣ`, `log`, and `Σ`. These appear in almost every ML formula (softmax, the loss function).
+**Before this:** [C3 Order of operations](01-concepts.md#c3--order-of-operations), [C6 Function](01-concepts.md#c6--function), [C10 Exponents](01-concepts.md#c10--exponents). Read each card and do its self-test. If one is shaky, fix it first. C11 and C12 are what this session teaches. Read them alongside.
 **Resource:** [Khan Academy — Algebra 2](https://www.khanacademy.org/math/algebra2). Search for **"exponent properties"**, **"introduction to logarithms"**, and **"summation notation"**.
 **Do:**
 1. Exponents: work through the properties (`aᵐ·aⁿ = aᵐ⁺ⁿ`, `a⁰ = 1`, `a⁻ⁿ = 1/aⁿ`) until you can do the practice without looking.
@@ -46,6 +67,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 ### Session 1.3 — What a derivative actually is (~2 h)
 - [ ] Done
 **Goal:** the intuition that a derivative is a "local slope", the rate of change at a point.
+**Before this:** [C2 Fractions, decimals, and division](01-concepts.md#c2--fractions-decimals-and-division), [C6 Function](01-concepts.md#c6--function), [C7 Graph of a function](01-concepts.md#c7--graph-of-a-function), [C8 Slope of a line](01-concepts.md#c8--slope-of-a-line). Read each card and do its self-test. If one is shaky, fix it first. C14 and C15 are what this session teaches. Read them after the videos.
 **Resource:** 3Blue1Brown *Essence of calculus*: [Chapter 1 "The essence of calculus"](https://www.youtube.com/watch?v=WUvTyaaNkzM) and [Chapter 2 "The paradox of the derivative"](https://www.youtube.com/watch?v=9vKqVkMQHKk).
 **Do:**
 1. Watch Chapter 1. Write down the main idea in 3 lines.
@@ -60,6 +82,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 ### Session 1.4 — Derivative rules and the chain rule (~2 h)
 - [ ] Done
 **Goal:** know the power rule, sum rule, product rule, and above all the **chain rule**, which is the core of backpropagation.
+**Before this:** [C10 Exponents](01-concepts.md#c10--exponents), [C15 Derivative](01-concepts.md#c15--derivative), [C17 Function composition](01-concepts.md#c17--function-composition). Read each card and do its self-test. If one is shaky, fix it first. C16 and C18 are what this session teaches.
 **Resource:** [Chapter 3 "Derivative formulas through geometry"](https://www.youtube.com/watch?v=S0_qX4VJhMQ) and [Chapter 4 "Visualizing the chain rule and product rule"](https://www.youtube.com/watch?v=YG15m2VwSjA).
 **Do:**
 1. Watch Chapter 3. On paper, derive `d/dx x² = 2x` the way he does.
@@ -76,6 +99,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 ### Session 1.5 — e, exponentials, and anchor derivation #1 (~2 h)
 - [ ] Done
 **Goal:** understand why `eˣ` is special, and do your first anchor derivation.
+**Before this:** [C10 Exponents](01-concepts.md#c10--exponents), [C15 Derivative](01-concepts.md#c15--derivative), [C16 Derivative rules](01-concepts.md#c16--derivative-rules-power-constant-multiple-sum). Read each card and do its self-test. If one is shaky, fix it first. C13 is what this session teaches.
 **Resource:** [Chapter 5 "What's so special about Euler's number e?"](https://www.youtube.com/watch?v=m2MIpDrF7Es).
 **Do:**
 1. Watch Chapter 5.
@@ -92,6 +116,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 ### Session 1.6 — Vectors and linear combinations (~2 h)
 - [ ] Done
 **Goal:** see vectors as both arrows and lists of numbers, and understand linear combinations.
+**Before this:** [C1 Negative numbers](01-concepts.md#c1--negative-numbers), [C2 Fractions, decimals, and division](01-concepts.md#c2--fractions-decimals-and-division), [C7 Graph of a function](01-concepts.md#c7--graph-of-a-function). Read each card and do its self-test. If one is shaky, fix it first. C21 and C22 are what this session teaches.
 **Resource:** 3Blue1Brown *Essence of linear algebra*: [Chapter 1 "Vectors"](https://www.youtube.com/watch?v=fNk_zzaMoSs) and [Chapter 2 "Linear combinations, span, and basis vectors"](https://www.youtube.com/watch?v=k7RM-ot2NWY).
 **Do:**
 1. Watch both chapters and write your 3-line summaries.
@@ -106,6 +131,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 ### Session 1.7 — Matrices as transformations (~2 h)
 - [ ] Done
 **Goal:** see a matrix as a function that transforms space. Matrix multiplication is doing one transformation after another.
+**Before this:** [C4 Variables and expressions](01-concepts.md#c4--variables-and-expressions), [C6 Function](01-concepts.md#c6--function), [C21 Vector](01-concepts.md#c21--vector), [C22 Linear combination](01-concepts.md#c22--linear-combination). Read each card and do its self-test. If one is shaky, fix it first. C23 and C24 are what this session teaches.
 **Resource:** [Chapter 3 "Linear transformations and matrices"](https://www.youtube.com/watch?v=kYB8IZa5AuE) and [Chapter 4 "Matrix multiplication as composition"](https://www.youtube.com/watch?v=XkY2DOUCWMU).
 **Do:**
 1. Watch both chapters. Write your summaries.
@@ -120,6 +146,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 ### Session 1.8 — Dot products (~2 h)
 - [ ] Done
 **Goal:** understand the dot product as a "similarity" measurement. It is the heart of attention in Transformers.
+**Before this:** [C21 Vector](01-concepts.md#c21--vector), [C24 Matrix multiplication and shapes](01-concepts.md#c24--matrix-multiplication-and-shapes). Read each card and do its self-test. If one is shaky, fix it first. C25 is what this session teaches.
 **Resource:** [Chapter 9 "Dot products and duality"](https://www.youtube.com/watch?v=LyGKycYT2v0); optionally [Chapter 8 "Nonsquare matrices as transformations between dimensions"](https://www.youtube.com/watch?v=v8VSDg_WQlA) first.
 **Do:**
 1. Watch Chapter 9 (and Chapter 8 if you have time).
@@ -135,6 +162,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 ### Session 1.9 — More linear algebra (optional) (~2 h)
 - [ ] Done
 **Goal:** a broader picture of linear algebra. Not required to continue.
+**Before this:** [C23 Matrix as a transformation](01-concepts.md#c23--matrix-as-a-transformation), [C24 Matrix multiplication and shapes](01-concepts.md#c24--matrix-multiplication-and-shapes). Read each card and do its self-test. If one is shaky, fix it first.
 **Resource:** [Chapter 7 "Inverse matrices, column space and null space"](https://www.youtube.com/watch?v=uQhTuRlWMxw), [Chapter 13 "Change of basis"](https://www.youtube.com/watch?v=P2LTAUO1TdA), [Chapter 14 "Eigenvectors and eigenvalues"](https://www.youtube.com/watch?v=PFDu9oVAE-g).
 **Do:**
 1. Watch any or all of them. Summarize each in 3 lines.
@@ -147,6 +175,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 ### Session 1.10 — Probability: Bayes and distributions (~2 h)
 - [ ] Done
 **Goal:** the intuition behind probabilities, conditional probability, and distributions. A language model outputs a probability distribution over the next token.
+**Before this:** [C2 Fractions, decimals, and division](01-concepts.md#c2--fractions-decimals-and-division), [C12 Σ](01-concepts.md#c12--σ-sigma-notation-and-the-mean). Read each card and do its self-test. If one is shaky, fix it first. C26, C27 and C28 are what this session teaches.
 **Resource:** 3Blue1Brown ["Bayes theorem, the geometry of changing beliefs"](https://www.youtube.com/watch?v=HZGCoVF3YvM) and ["Binomial distributions | Probabilities of probabilities, part 1"](https://www.youtube.com/watch?v=8idr1WZ1A7Q).
 **Do:**
 1. Watch the Bayes video. Redo his example on paper.
@@ -161,6 +190,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 ### Session 1.11 — Cross-entropy: how models are scored (~2 h)
 - [ ] Done
 **Goal:** understand cross-entropy, the loss function used to train nearly every language model.
+**Before this:** [C11 Logarithms](01-concepts.md#c11--logarithms), [C13 e and eˣ](01-concepts.md#c13--e-and-eˣ), [C26 Probability](01-concepts.md#c26--probability), [C27 Probability distribution](01-concepts.md#c27--probability-distribution). Read each card and do its self-test. If one is shaky, fix it first. C29 and C30 are what this session teaches.
 **Resource:** 3Blue1Brown ["What is cross-entropy, and why is it used in ML? | Information theory, part 2"](https://www.youtube.com/watch?v=GlYgs6v2YfU).
 **Do:**
 1. Watch the video. Pause at each formula and write it down.
@@ -177,12 +207,14 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 ### Session 1.12 — Neural networks, intuitively (~2 h)
 - [ ] Done
 **Goal:** the big picture of what a neural network is and how it learns, before you build one.
+**Before this:** [C15 Derivative](01-concepts.md#c15--derivative), [C17 Function composition](01-concepts.md#c17--function-composition), [C18 Chain rule](01-concepts.md#c18--chain-rule), [C20 Minimum and gradient descent](01-concepts.md#c20--minimum-and-gradient-descent). Read each card and do its self-test. If one is shaky, fix it first. C19 is new here (see step 3).
 **Resource:** 3Blue1Brown *Neural networks*: [Chapter 1 "But what is a neural network?"](https://www.youtube.com/watch?v=aircAruvnKk), [Chapter 2 "Gradient descent, how neural networks learn"](https://www.youtube.com/watch?v=IHZwWFHWa-w), [Chapter 3 "Backpropagation, intuitively"](https://www.youtube.com/watch?v=Ilg3gGewQ5U), [Chapter 4 "Backpropagation calculus"](https://www.youtube.com/watch?v=tIeHLnjs5U8).
 **Do:**
 1. Watch chapters 1–2. Write your summaries.
 2. Watch chapters 3–4. In chapter 4, pause and copy the chain-rule expression into your notes. Point to where Session 1.4 shows up.
-3. In your own words, write a 1-paragraph answer to: "How does a neural network learn?"
-**Done when:** your paragraph uses the words *loss*, *gradient*, and *chain rule* correctly.
+3. **Partial derivatives and the gradient:** read [C19](01-concepts.md#c19--partial-derivatives-and-the-gradient). For `f(x, y) = x·y + y`, compute ∂f/∂x and ∂f/∂y on paper, then check numerically: nudge only `x` by `h = 1e-4` (keeping `y` fixed), then only `y`. At (2, 3) both should be ≈ 3.
+4. In your own words, write a 1-paragraph answer to: "How does a neural network learn?"
+**Done when:** your partial-derivative check matches (≈ 3 and ≈ 3), and your paragraph uses the words *loss*, *gradient*, and *chain rule* correctly.
 **Knowledge check:**
 - What is a "weight", and what does training change?
 - What is gradient descent, using a ball-on-a-hill picture?
@@ -191,6 +223,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 ### Session 1.13 — Project: your NumPy math toolkit (~2.5 h)
 - [ ] Done
 **Goal:** without a video, build a tiny toolkit of the math you've learned, and prove each piece works.
+**Before this:** [C9 Quadratic functions](01-concepts.md#c9--quadratic-functions-lowest-point-vs-solving), [C12 Σ](01-concepts.md#c12--σ-sigma-notation-and-the-mean), [C20 Minimum and gradient descent](01-concepts.md#c20--minimum-and-gradient-descent), [C24 Matrix multiplication and shapes](01-concepts.md#c24--matrix-multiplication-and-shapes), [C29 Softmax](01-concepts.md#c29--softmax), [C30 Cross-entropy](01-concepts.md#c30--cross-entropy-negative-log-likelihood). Read each card and do its self-test. If one is shaky, fix it first. This project uses all of them. Skim the self-tests first.
 **Resource:** [NumPy user guide](https://numpy.org/doc/stable/user/index.html) (reference only).
 **Do:** create `~/ai-learning/mathkit.py` with these functions, plus a `test_mathkit.py` that checks each one using `pytest` (`uv pip install pytest`):
 1. `numeric_derivative(f, x, h=1e-5)` using a central difference. Test it on `3x² − 4x + 5` at x = 3 (expect ≈ 14).
@@ -207,6 +240,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 ### Session 1.14 — Readiness check before Phase 2 (~1.5 h)
 - [ ] Done
 **Goal:** confirm you're ready for Karpathy's micrograd lecture, and patch any gaps.
+**Before this:** [C15 Derivative](01-concepts.md#c15--derivative), [C18 Chain rule](01-concepts.md#c18--chain-rule), [C29 Softmax](01-concepts.md#c29--softmax), [C30 Cross-entropy](01-concepts.md#c30--cross-entropy-negative-log-likelihood). Read each card and do its self-test. If one is shaky, fix it first.
 **Resource:** your notes from Sessions 1.1–1.13.
 **Do:**
 1. On a blank page, without notes, write: the chain rule in words; what a derivative means; the formulas for softmax and cross-entropy; what gradient descent does.

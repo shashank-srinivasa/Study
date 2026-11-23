@@ -72,3 +72,11 @@ def test_knowledge_check_required():
 def test_knowledge_check_needs_three_questions():
     errs = validate(parse_sessions(load("short_kc.md")))
     assert any("Knowledge check" in e and "3" in e for e in errs)
+
+
+def test_before_this_field_parsed():
+    text = ("### Session 1.1 — T (~2 h)\n- [ ] Done\n**Goal:** g\n**Before this:** [Functions](01-concepts.md#c6-function)\n"
+            "**Resource:** r\n**Do:**\n1. x\n**Done when:** y\n**Knowledge check:**\n- a\n- b\n- c\n")
+    s = parse_sessions(text)
+    assert "Before this" in s[0].fields
+    assert validate(s) == []

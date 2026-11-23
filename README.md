@@ -71,16 +71,16 @@ At about **10 hours a week**, the whole guide takes roughly **15 weeks (3.5 mont
 | Phase | File | Core hours | Done by about (at 10 h/week) |
 |---|---|---|---|
 | 0. Setup | [00-setup.md](00-setup.md) | 3 | week 1 |
-| 1. Math foundations | [01-math-foundations.md](01-math-foundations.md) | 25.5 | week 3 |
+| 1. Math foundations (+ [concept cards](01-concepts.md)) | [01-math-foundations.md](01-math-foundations.md) | 26.5 | week 3 |
 | 2. micrograd | [02-micrograd.md](02-micrograd.md) | 14 | week 5 |
 | 3. makemore | [03-makemore.md](03-makemore.md) | 33.5 | week 8 |
 | 4. GPT | [04-gpt.md](04-gpt.md) | 37.5 | week 12 |
 | 5. Hardware & kernels | [05-hardware.md](05-hardware.md) | 30 | week 15 |
 | 6. Capstone & next | [06-capstone-and-next.md](06-capstone-and-next.md) | 5.5 | week 15 |
-| **Total** | | **149** | |
+| **Total** | | **150** | |
 | 7. Understanding Claude *(optional)* | [07-understanding-claude.md](07-understanding-claude.md) | 19.5 (extra) | after Phase 4, any time |
 
-**Math:** you don't need to remember any math to start. Phase 1 starts from functions and slopes.
+**Math:** you don't need to remember any math to start. Phase 1 starts with a foundations check (Session 1.0) and explains every idea meaning-first: what it is, why it exists, and where it shows up in AI ([concept cards](01-concepts.md)).
 There are four *anchor derivations* (Sessions 1.5, 2.2, 2.3, 3.14) that you do on paper and
 check in code. Everything else is intuition.
 

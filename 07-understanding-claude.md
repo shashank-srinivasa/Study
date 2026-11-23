@@ -9,7 +9,7 @@ This phase uses what Anthropic *has* published: its research papers on assistant
 interpretability, Claude's constitution, and its agent guidance. Links and API details were checked
 on 2026-11-23.
 
-**Not counted in the guide's 149 core hours.** This phase is an optional extension.
+**Not counted in the guide's 150 core hours.** This phase is an optional extension.
 
 ---
 

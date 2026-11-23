@@ -43,3 +43,10 @@ def test_partial_derivatives_taught_in_1_12():
     text = (ROOT / "01-math-foundations.md").read_text()
     s = text[text.index("### Session 1.12"):text.index("### Session 1.13")]
     assert "partial derivative" in s.lower()
+
+
+def test_every_card_links_at_least_one_tutorial():
+    for cid, title, body in cards():
+        m = re.search(r"\*\*Learn it:\*\*(.*?)(?=\*\*If shaky:\*\*)", body, re.S)
+        assert m, f"{cid} has no Learn it"
+        assert re.search(r"\]\(https?://", m.group(1)), f"{cid} Learn it has no link"

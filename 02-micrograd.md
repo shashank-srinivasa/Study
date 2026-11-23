@@ -118,8 +118,8 @@ own chapter list.
 **Resource:** [scikit-learn `make_moons`](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_moons.html) (reference only; `uv pip install scikit-learn`).
 **Do:**
 1. In a new file, `~/ai-learning/mygrad.py`, write `Value` with `+ − * / pow exp tanh relu` and `backward()`, from memory. Peek only if stuck for more than 15 minutes, and write down what you had to peek at.
-2. Write a `test_mygrad.py` that checks every operation's gradient against PyTorch on random inputs (tolerance 1e-6).
-3. Generate 100 points with `make_moons(n_samples=100, noise=0.1)`. Labels should be ±1.
+2. Write a `test_mygrad.py` that checks every operation's gradient against PyTorch on random inputs (tolerance 1e-6). Make the PyTorch tensors `.double()`, as Karpathy does in the lecture. Python floats are 64-bit, and comparing against PyTorch's default float32 would fail at 1e-6 even when your code is right.
+3. Generate 100 points with `X, y = make_moons(n_samples=100, noise=0.1)`, then convert the labels from 0/1 to ±1 with `y = 2*y - 1`.
 4. Train an `MLP(2, [16, 16, 1])` with a hinge or squared-error loss.
 5. Plot the decision boundary with matplotlib (`contourf` over a grid).
 **Done when:** your gradient tests pass, training accuracy is at least 95%, and your boundary plot visibly separates the two moons.

@@ -49,8 +49,8 @@ Each phase is a file made of **sessions** of about 1.5–2.5 hours. Every sessio
 - Sessions marked **(optional)** don't count toward the core hours. Skip them freely.
 - Every phase ends with a **Project** you do without a video. Don't skip these. They're where
   watching turns into knowing.
-- **Type the code yourself.** Don't copy-paste. This is the most common advice from people who
-  finished *Zero to Hero*.
+- **Type the code yourself.** Don't copy-paste. Typing it forces you to notice every line, and it's
+  how Karpathy's lectures are designed to be followed: he builds everything live.
 - Keep all your work in `~/ai-learning/` (set up in Phase 0).
 
 ## The phases

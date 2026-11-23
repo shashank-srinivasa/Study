@@ -39,7 +39,7 @@ wheels for Python 3.11–3.15.)
 3. In one cell, set `device = "mps"`, create a tensor on it, and multiply two 1000×1000 random matrices with `@`. Print the result's `.shape` and `.device`.
 4. Open Google Colab, sign in with a personal Google account, and create a notebook. Choose **Runtime → Change runtime type → T4 GPU**. Run `!nvidia-smi`. You won't use it until Phase 5. This step just makes sure you have access before you need it.
 **Done when:** your notebook runs the tutorial top to bottom without errors; the matmul cell prints `torch.Size([1000, 1000])` and `mps:0`; and in Colab `!nvidia-smi` shows a Tesla T4.
-**Sticking points:** Colab's free GPUs aren't guaranteed. If no GPU is available, try again later. Phase 5 also lists paid alternatives, so you won't be blocked.
+**Sticking points:** Colab's free GPUs aren't guaranteed. If no GPU is available, try again later. Phase 5 also lists paid alternatives (RunPod, Lambda, Vast.ai), so you won't be blocked.
 **Go deeper:** If you've never used Jupyter, spend 15 minutes on keyboard shortcuts (Shift+Enter runs a cell, `Esc` then `B` adds a cell below).
 **Knowledge check:**
 - What is a tensor, and how is it different from a Python list?

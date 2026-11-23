@@ -12,8 +12,8 @@ Code: [karpathy/makemore](https://github.com/karpathy/makemore). Each lecture's 
 is in [nn-zero-to-hero/lectures/makemore](https://github.com/karpathy/nn-zero-to-hero/tree/master/lectures/makemore).
 The data file is `names.txt` from the makemore repo.
 
-**This phase is the heaviest one.** It's also where most people say they finally "got" neural
-networks. Expect some sessions to run over. That's normal.
+**This is the densest phase in the guide.** It's where training a neural network stops being
+abstract and becomes something you can debug. Expect some sessions to run over. That's normal.
 
 **Device:** use **CPU** for this whole phase (`device = "cpu"`, which is the default). These models
 are tiny, and the overhead of moving data to your Mac's GPU usually makes them slower, not
@@ -169,7 +169,7 @@ video's own chapter list.
 1. Fix the initial loss by scaling down the output layer.
 2. Plot the histogram of tanh activations. Find the saturated ones (near ±1), then fix them.
 3. Apply Kaiming init (`gain / sqrt(fan_in)`).
-**Done when:** your tanh histogram is no longer piled up at ±1, and your validation loss improves on Session 3.9.
+**Done when:** your tanh histogram is no longer piled up at ±1, and your validation loss improves on the lecture's own starter code that you ran at the start of the session. Compare against that, not your tuned Session 3.9 model.
 **Knowledge check:**
 - Why does a saturated tanh stop learning? (Think about its derivative from Session 2.3.)
 - What problem does Kaiming initialization solve?

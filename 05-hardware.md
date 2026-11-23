@@ -17,7 +17,9 @@ Triton, and profile your own GPT.
   - **Free:** [Google Colab](https://colab.research.google.com/signup) with a T4 GPU. Good for Sessions 5.3–5.4. Some newer Triton features may not support the T4's older architecture.
   - **Recommended for 5.5 onwards:** a [RunPod](https://www.runpod.io/pricing) RTX 4090, listed at **$0.34/hour** (community cloud; secure cloud is $0.89) and billed per second. Prices checked 2026-11-23; they change. Pick a PyTorch template so CUDA, `nvcc`, and Triton are already installed.
   - **Expected total cost:** about 25 GPU hours across the phase, roughly **$10** at the community rate.
-  - **⚠️ Always stop or terminate the pod when you finish a session.** A forgotten running pod keeps billing.
+  - **⚠️ Terminate the pod when you finish a session.** A forgotten running pod keeps billing. A merely *stopped* pod still bills for its disk, and on community cloud its GPU can be taken by someone else while it's stopped. So treat pods as disposable.
+  - **Keep your code on your Mac, in git.** Moving files to and from a pod: `scp -P <port> train_gpt2.py input.txt root@<pod-ip>:/workspace/` going up, and the same with the paths swapped coming back (traces, `PROFILE.md`). RunPod shows the exact SSH command on the pod's "Connect" panel. The pod's Jupyter upload/download buttons work too.
+  - **If RunPod has no capacity:** use [Lambda](https://lambda.ai/pricing) or [Vast.ai](https://vast.ai/pricing). Any single NVIDIA GPU from the RTX 30-series or newer, or an A100/H100, works for this phase. Check the current hourly price before starting.
 
 ---
 
@@ -145,7 +147,13 @@ Triton, and profile your own GPT.
 - [ ] Done
 **Goal:** apply the Session 4.14 speedups on a real NVIDIA GPU, and measure each one.
 **Resource:** "Let's reproduce GPT-2 (124M)", [01:22:18–02:14:55](https://www.youtube.com/watch?v=l8pRSuU81PU) (rewatch sections as needed); [build-nanogpt](https://github.com/karpathy/build-nanogpt) commits.
-**Do:** on your pod, starting from your `train_gpt2.py`, add one change at a time and record ms/step and tokens/sec after each:
+**Do:** first, set up a fair baseline on your pod:
+- In a copy of your `train_gpt2.py`, switch back to the manual attention (not `scaled_dot_product_attention`) and set the vocab back to 50257. Alternatively, check out the matching early commit of [build-nanogpt](https://github.com/karpathy/build-nanogpt).
+- Use `B=16, T=1024`, which fits a 24 GB RTX 4090 in float32. Drop to `B=8` if you run out of memory.
+- Set gradient accumulation to 1.
+- Record ms/step.
+
+Then add one change at a time, recording ms/step and tokens/sec after each:
 1. TF32: `torch.set_float32_matmul_precision("high")`.
 2. bfloat16 autocast.
 3. `torch.compile(model)`.

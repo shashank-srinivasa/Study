@@ -54,6 +54,7 @@ hours, shrink the model (fewer layers, smaller `n_embd`, shorter context). The i
 **Goal:** implement self-attention: queries, keys, values, and the scaled dot product. This is the crux of the Transformer.
 **Resource:** "Let's build GPT" **01:00:18–01:19:11**.
 **Do:**
+0. Optional but recommended for building intuition first: watch 3Blue1Brown's ["Attention in transformers, step-by-step"](https://www.youtube.com/watch?v=eMlx5fFNoYc) (about 26 min). It shows visually what you're about to code.
 1. Add positional embeddings.
 2. Implement a single attention `Head`: `q = query(x)`, `k = key(x)`, `wei = q @ k.transpose(-2, -1) * head_size**-0.5`, then mask, softmax, and `@ v`.
 3. Pause on each of notes 1–6 and write a one-line summary of each.
@@ -101,7 +102,7 @@ hours, shrink the model (fewer layers, smaller `n_embd`, shorter context). The i
 **Resource:** the "Suggested exercises" in the [video description](https://www.youtube.com/watch?v=kCc8FmEb1nY), **EX1**.
 **Do:**
 1. Without looking at nanoGPT, merge `Head` and `MultiHeadAttention` into one `CausalSelfAttention` class. Use a single linear layer for q, k, v, and treat heads as an extra batch dimension: shape `(B, nh, T, hs)`.
-2. Check that it gives the same outputs as your old version when given the same weights.
+2. Check that it gives the same outputs as your old version when given the same weights. Call `model.eval()` first so dropout is off. To copy weights: stack each old head's `query`, `key`, and `value` weight matrices into the right rows of your single `c_attn` layer (all heads' q, then all k, then all v), matching the order your `.view()` splits them.
 3. Then compare your code with the `CausalSelfAttention` class in [build-nanogpt](https://github.com/karpathy/build-nanogpt) `train_gpt2.py`.
 4. Replace the manual attention with `F.scaled_dot_product_attention(q, k, v, is_causal=True)`, and check that the output still matches.
 **Done when:** your batched version matches the original to about 1e-6, and so does the `scaled_dot_product_attention` version.
@@ -113,7 +114,7 @@ hours, shrink the model (fewer layers, smaller `n_embd`, shorter context). The i
 ### Session 4.7 — Tokenization: Unicode and BPE (~2 h)
 - [ ] Done
 **Goal:** understand why LLMs use tokens instead of characters, and how Byte Pair Encoding works.
-**Resource:** "Let's build the GPT Tokenizer" **00:00:00–00:34:58**; the [tiktokenizer web app](https://tiktokenizer.vercel.app/).
+**Resource:** "Let's build the GPT Tokenizer" **00:00:00–00:39:20**; the [tiktokenizer web app](https://tiktokenizer.vercel.app/).
 **Do:**
 1. Play with tiktokenizer: try English, code, numbers, and another language. Note the token counts.
 2. Code along: `ord()`, UTF-8 bytes, counting pairs, merging the most common pair.
@@ -127,7 +128,7 @@ hours, shrink the model (fewer layers, smaller `n_embd`, shorter context). The i
 ### Session 4.8 — Encode and decode (~2 h)
 - [ ] Done
 **Goal:** finish a working tokenizer that turns text into tokens and back.
-**Resource:** "Let's build the GPT Tokenizer" **00:34:58–00:57:36**.
+**Resource:** "Let's build the GPT Tokenizer" **00:39:20–00:57:36**.
 **Do:**
 1. Draw the tokenizer/LLM diagram from the video. The tokenizer is a separate stage, trained on its own data.
 2. Implement `decode(ids)`, and handle invalid UTF-8 with `errors="replace"`.
@@ -205,6 +206,7 @@ hours, shrink the model (fewer layers, smaller `n_embd`, shorter context). The i
 4. Tie `wte` and `lm_head` weights, and add GPT-2 initialization (std 0.02, scaled residual init).
 5. Train a few hundred steps on MPS with small `B` and `T` (for example `B=4, T=256`).
 **Done when:** your initial loss is about 10.8, the loss decreases steadily on MPS, and you can explain weight tying.
+**Sticking points:** Karpathy's code is written for NVIDIA GPUs. On your Mac, replace every `torch.cuda.synchronize()` with `torch.mps.synchronize()` (otherwise you'll get "Torch not compiled with CUDA enabled"). The `fused=True` AdamW option and the bfloat16 autocast branch only apply on CUDA, so leave them off locally. You'll turn them on in Phase 5 on a real NVIDIA GPU.
 **Knowledge check:**
 - Why is the initial loss about 10.8?
 - What does weight tying share, and how many parameters does it save?
@@ -217,7 +219,7 @@ hours, shrink the model (fewer layers, smaller `n_embd`, shorter context). The i
 **Do:**
 1. Watch the whole section and note each speedup with its time per step (1000 ms → 333 → 300 → 130 → 96 → 93 ms).
 2. For each, write one line on *why* it's faster: less memory traffic, Tensor Cores, fewer Python launches, kernel fusion, or "nice" numbers.
-3. On your Mac, time your training step before and after switching to `F.scaled_dot_product_attention`, and padding the vocab to 50304.
+3. On your Mac, time your training step before and after switching to `F.scaled_dot_product_attention`, and padding the vocab to 50304. Call `torch.mps.synchronize()` before reading the timer. GPU work is asynchronous, so without it you only measure how long it took to *launch* the work. (Phase 5 Session 5.1 explains why.)
 **Done when:** you have a table of each speedup with its reason, and your own before/after timing on MPS.
 **Sticking points:** TF32, bfloat16 autocast, and `torch.compile` behave differently on MPS than on CUDA, and some may not help. That's expected. Phase 5 runs them on a real NVIDIA GPU.
 **Knowledge check:**
@@ -272,9 +274,10 @@ hours, shrink the model (fewer layers, smaller `n_embd`, shorter context). The i
 **Resource:** [nanochat](https://github.com/karpathy/nanochat) README section "Running on CPU / MPS", and [`runs/runcpu.sh`](https://github.com/karpathy/nanochat/blob/master/runs/runcpu.sh).
 **Do:**
 1. `git clone https://github.com/karpathy/nanochat ~/ai-learning/nanochat`, then read `runs/runcpu.sh` top to bottom first.
-2. Run the commands **one at a time** as the script suggests: dataset download, tokenizer training, `base_train` (tuned for about 30 min on an M3 Max), then `chat_sft` (about 10 min).
-3. Chat with it using `python -m scripts.chat_cli -p "What is the capital of France?"`.
-4. While it trains, open `nanochat/gpt.py` and find each piece you built yourself: attention, MLP, embeddings.
+2. `cd ~/ai-learning/nanochat`, deactivate your guide venv (`deactivate`), then run the script's setup block first: `export NANOCHAT_BASE_DIR="$HOME/.cache/nanochat"`, `uv venv`, `uv sync --extra cpu`, `source .venv/bin/activate`. This creates a separate environment just for nanochat. That's expected, so don't install nanochat into `~/ai-learning/.venv`.
+3. Then run the remaining commands **one at a time** as the script suggests: dataset download, tokenizer training, `base_train` (tuned for about 30 min on an M3 Max), then `chat_sft` (about 10 min).
+4. Chat with it using `python -m scripts.chat_cli -p "What is the capital of France?"`.
+5. While it trains, open `nanochat/gpt.py` and find each piece you built yourself: attention, MLP, embeddings.
 **Done when:** your model answers a chat prompt (badly is fine), and you've matched at least 5 pieces of nanochat's model code to code you wrote earlier.
 **Sticking points:** The script downloads several data shards and uses disk space under `~/.cache/nanochat`, so check your free space first. The script itself says not to expect strong results on a laptop. The point is seeing the whole pipeline work.
 **Knowledge check:**

@@ -67,6 +67,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 3. On paper, find the derivative of `g(x) = (2x + 1)²` using the chain rule. Check it numerically in the notebook with the same `h` trick as Session 1.3.
 **Done when:** your paper answer for `g'(x)` is `4(2x + 1)`, and at x = 1 your numeric estimate is ≈ 12.
 **Sticking points:** The chain rule clicks when you see it as "multiply the local slopes along the path". If the notation `dg/dx = dg/du · du/dx` confuses you, ignore the notation and focus on the nudge picture.
+**Go deeper:** [*Mathematics for Machine Learning*](https://mml-book.github.io/book/mml-book.pdf) (free PDF), Chapter 5 "Vector Calculus", Sections 5.1–5.2 (only once the videos make sense).
 **Knowledge check:**
 - State the chain rule in one sentence, without symbols.
 - Why does the product rule have two terms?
@@ -125,6 +126,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 2. In NumPy, compute dot products between pairs of vectors that point the same way, opposite ways, and at right angles. Note the sign of each.
 3. Compute *cosine similarity*, `a·b / (|a||b|)`, for the same pairs.
 **Done when:** you can predict the sign of a dot product from a drawing of the two arrows before running the code.
+**Go deeper:** [*Mathematics for Machine Learning*](https://mml-book.github.io/book/mml-book.pdf) (free PDF), Chapter 3 "Analytic Geometry", Sections 3.1–3.4 (norms, inner products, angles).
 **Knowledge check:**
 - What does a dot product of 0 mean geometrically?
 - How is one entry of a matrix product `C = A @ B` a dot product?
@@ -166,6 +168,7 @@ guide's four *anchor derivations* here. The other three come in Phases 2 and 3.
 3. Write `cross_entropy(p, target_index) = -np.log(p[target_index])`. Compute it when the model is confident and right, unsure, and confident and wrong.
 **Done when:** you can show with numbers that being confidently wrong gives a much bigger loss than being unsure.
 **Sticking points:** If `softmax` overflows on large numbers (`exp(1000)` → `inf`), subtract `z.max()` first. You'll see Karpathy do the same thing.
+**Go deeper:** [*Mathematics for Machine Learning*](https://mml-book.github.io/book/mml-book.pdf) (free PDF), Chapter 6 "Probability and Distributions", Sections 6.1–6.2.
 **Knowledge check:**
 - What does softmax do to a list of arbitrary numbers?
 - Why does cross-entropy use `−log`, and what is it when the model gives the right answer probability 1?

@@ -49,7 +49,14 @@ verifies its resources live (WebFetch) before writing, then runs the checker.
 **Done when:** observable, self-checkable result
 **Sticking points:** (optional)
 **Go deeper:** (optional)
+**Knowledge check:**
+- question 1 (3–5 questions, each answerable from the session's resource)
 ```
+
+Every phase file 01–05 ends with a `### Session N.P — Project: <name> (~X h)` session. The
+project is done without a video, has a clear spec and acceptance criteria, and may span
+multiple sessions. Its "Resource" field points only to docs/references, not walkthroughs.
+The README has a "Community" section with verified links.
 
 Optional sessions put `(optional)` in the title before the hours. Their hours count toward
 `optional`, not `core`.

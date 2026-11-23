@@ -27,6 +27,17 @@ lectures. "Proven" means exactly that: a strong track record of helping people a
 doesn't mean any specific testimonial. What this guide adds is the order, the session breakdown,
 what to do and type, the "done when" checks, the knowledge checks, and the projects.
 
+### Evidence: what people actually report
+
+"Widely used" is backed by numbers checked 2026-11-23. For example, Karpathy's "Let's build GPT" has 8.4M YouTube views, his micrograd lecture 4.5M, and 3Blue1Brown's neural-network chapter 1 has 25.4M. First-hand reports are thinner. These come from Hacker News comments (Reddit and blogs were not searched successfully), and people who finished something post more than people who quit:
+
+- **Karpathy's *Zero to Hero*: strongest evidence.** An experienced engineer: "He assumes a high level of programming knowledge but demystifies the ML side" ([HN](https://news.ycombinator.com/item?id=34506078)). A self-described "rank noob" took "a few months off" and reimplemented the lectures in C++ ([HN](https://news.ycombinator.com/item?id=41269576)). **Main warning: math.** Someone whose highest math was Calculus 3: "Despite watching Karpathy's tutorial videos, I quickly got lost" ([HN](https://news.ycombinator.com/item?id=40418023)). That's why Phase 1 exists.
+- **3Blue1Brown: great for intuition, not enough alone.** "I never was able to put the pieces together before seeing the visualizations" ([HN](https://news.ycombinator.com/item?id=33595722)). Another engineer found "lots of holes" afterward ([HN](https://news.ycombinator.com/item?id=28158991)).
+- **Watching isn't learning.** After a video-only course: "a superficial, shallow 'understanding' but no real knowledge" ([HN](https://news.ycombinator.com/item?id=31612458)). That's why every phase has a project.
+- **GPU resources: weaker evidence.** Boehm's CUDA matmul is "a good intro" but "doesn't really explain a lot of the choices it makes" ([HN](https://news.ycombinator.com/item?id=43741261)). GPU MODE is "right on the money" ([HN](https://news.ycombinator.com/item?id=43128424)). For Horace He's post and the Triton tutorials, **no first-hand "this taught me" reports were found.** They're widely cited, but the evidence for them is thinner.
+- **Recommended by people who finished it:** Raschka's *Build a Large Language Model (From Scratch)*. "I don't think there is anything in a transformer I couldn't explain in the smallest detail now" ([HN](https://news.ycombinator.com/item?id=48424626)). It's included as an optional Phase 4 companion.
+- **After this guide:** "Start with Karpathy and then go to CS 336" ([HN](https://news.ycombinator.com/item?id=49419272)). That's Path C in Phase 6.
+
 All links, video titles, timestamps, prices, and repo statuses were checked on **2026-11-23**.
 Timestamps come from each video's own chapter list. Prices change. If a link has died, search
 for the resource's title.
@@ -67,6 +78,7 @@ At about **10 hours a week**, the whole guide takes roughly **15 weeks (3.5 mont
 | 5. Hardware & kernels | [05-hardware.md](05-hardware.md) | 30 | week 15 |
 | 6. Capstone & next | [06-capstone-and-next.md](06-capstone-and-next.md) | 5.5 | week 15 |
 | **Total** | | **149** | |
+| 7. Understanding Claude *(optional)* | [07-understanding-claude.md](07-understanding-claude.md) | 19.5 (extra) | after Phase 4, any time |
 
 **Math:** you don't need to remember any math to start. Phase 1 starts from functions and slopes.
 There are four *anchor derivations* (Sessions 1.5, 2.2, 2.3, 3.14) that you do on paper and
@@ -111,4 +123,4 @@ You don't have to do this alone. The learning communities for the core resources
 
 - `docs/design.md` — the design behind this guide (goals, choices, constraints).
 - `tools/check_guide.py` — checks every session's format, the hour budgets, and that all links are
-  live: `python3 tools/check_guide.py 0*.md --total 120 160 --links`.
+  live: `python3 tools/check_guide.py 0[0-6]*.md --total 120 160 --links`.

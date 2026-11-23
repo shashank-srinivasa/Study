@@ -4,7 +4,7 @@ Date: 2026-11-23
 
 ## Intent and why
 
-The learner is a working software engineer on a CDN (Edge) service. They use AI tools daily
+The learner is a working software engineer on a CDN service. They use AI tools daily
 (Claude, opencode) but have no understanding of how they work internally. They want to learn
 this genuinely — for understanding and to eventually build something with real impact (they
 cited Tesla FSD as inspiration) — **not** for job hunting or credentials.

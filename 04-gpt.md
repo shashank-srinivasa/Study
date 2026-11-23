@@ -15,6 +15,8 @@ You'll also use [nanochat](https://github.com/karpathy/nanochat). **Note:** the
 [nanoGPT](https://github.com/karpathy/nanoGPT) README now says nanoGPT is "very old and deprecated" and
 points to nanochat instead. This guide follows that advice. (Checked 2026-11-23.)
 
+**Optional companion book:** Sebastian Raschka, [*Build a Large Language Model (From Scratch)*](https://www.manning.com/books/build-a-large-language-model-from-scratch) (paid), with free code at [rasbt/LLMs-from-scratch](https://github.com/rasbt/LLMs-from-scratch). It covers the same ground in writing (tokenization, attention, GPT, pretraining, fine-tuning). Use it if you learn better from text, or to re-read a session's topic another way. Engineers on Hacker News repeatedly recommend it (see the README's "Evidence" section).
+
 **Device:** from now on, use your Mac's GPU: `device = "mps" if torch.backends.mps.is_available() else "cpu"`.
 Karpathy trains on NVIDIA A100/H100 GPUs, so expect your runs to take longer. When a run would take
 hours, shrink the model (fewer layers, smaller `n_embd`, shorter context). The ideas are identical.

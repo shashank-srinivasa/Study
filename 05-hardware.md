@@ -11,6 +11,8 @@ Triton, and profile your own GPT.
 - Simon Boehm, ["How to Optimize a CUDA Matmul Kernel for cuBLAS-like Performance"](https://siboehm.com/articles/22/CUDA-MMM), with code in [SGEMM_CUDA](https://github.com/siboehm/SGEMM_CUDA).
 - The official [Triton tutorials](https://triton-lang.org/main/getting-started/tutorials/index.html).
 
+**Optional reference text:** [*Programming Massively Parallel Processors*](https://shop.elsevier.com/books/programming-massively-parallel-processors/hwu/978-0-323-91231-0) (Hwu, Kirk, El Hajj; paid), the standard CUDA textbook. GPU MODE's early lectures follow it. Look things up in it when a session's explanation isn't enough, for example on memory coalescing or shared-memory tiling.
+
 **Hardware for this phase:**
 - **Your Mac** for Sessions 5.1–5.2 (concepts and micro-benchmarks).
 - **An NVIDIA GPU in the cloud** for everything with CUDA or Triton. Your Mac can't run those.
